@@ -3,41 +3,39 @@ import Square from './Square';
 
 export default class App extends Component {
   state = {
-    width: 10,
-    height: 10
+    width: 3,
+    height: 3
   };
 
-  renderRows = (num, height) => {
-    let item = [];
-
-    // Render each rows of squares, render X rows
-    for (let index = 0; index < height; index++) {}
-
-    for (let index = 0; index < num; index++) {
-      item.push(<Square />);
+  renderRows = (width, height) => {
+    let rows = [];
+    let rowKey = 0;
+    for (let index = 0; index < height; index++) {
+      rows.push(this.renderSquares(width, rowKey));
+      rowKey++;
     }
-    return <div className="rows">{item}</div>;
+    return <div className="board">{rows}</div>;
+  };
+
+  renderSquares = (num, key) => {
+    let item = [];
+    let count = 0;
+    for (let index = 0; index < num; index++) {
+      item.push(<Square key={`${key}${count}`} />);
+      count++;
+    }
+
+    return (
+      <div className="rows" key={key}>
+        {item}
+      </div>
+    );
   };
 
   render() {
     return (
       <div className="game-board">
-        {this.renderRows(this.state.width)}
-        <div className="rows">
-          <Square />
-          <Square />
-          <Square />
-        </div>
-        <div className="rows">
-          <Square />
-          <Square />
-          <Square />
-        </div>
-        <div className="rows">
-          <Square />
-          <Square />
-          <Square />
-        </div>
+        {this.renderRows(this.state.width, this.state.height)}
       </div>
     );
   }
