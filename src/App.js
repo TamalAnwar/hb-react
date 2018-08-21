@@ -3,8 +3,20 @@ import Square from './Square';
 
 export default class App extends Component {
   state = {
-    width: 3,
-    height: 3
+    width: 10,
+    height: 10,
+    toadOnBoard: 0
+  };
+
+  renderToad = () => {
+    if (this.state.toadOnBoard < this.state.width) {
+      let num = Math.random();
+      if (num > 0.9) {
+        console.log('rendering a toad');
+        return true;
+      }
+    }
+    return false;
   };
 
   renderRows = (width, height) => {
@@ -21,7 +33,9 @@ export default class App extends Component {
     let item = [];
     let count = 0;
     for (let index = 0; index < num; index++) {
-      item.push(<Square key={`${key}${count}`} />);
+      item.push(
+        <Square toad={this.renderToad()} mario={false} key={`${key}${count}`} />
+      );
       count++;
     }
 
