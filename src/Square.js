@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 export default class Square extends Component {
+  state = {
+    mario: false,
+    toad: false
+  };
+
   render() {
     return (
       <div className="square">
