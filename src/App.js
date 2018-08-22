@@ -67,8 +67,8 @@ export default class App extends Component {
   };
 
   componentWillMount() {
-    let width = prompt('Number of rows?');
-    let height = prompt('Number of cols?');
+    let width = prompt('Number of rows?') || 10;
+    let height = prompt('Number of cols?') || 10;
     this.setState({ width, height });
   }
 
